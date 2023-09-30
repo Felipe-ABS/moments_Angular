@@ -8,7 +8,7 @@ import { Moment } from 'src/app/Moment';
   styleUrls: ['./moment-form.component.css']
 })
 export class MomentFormComponent implements OnInit {
-  @Output() onSubmit = new EventEmitter<Moment>()
+  @Output() onSubmit = new EventEmitter<Moment>();
   @Input() btnText!: string;
   @Input() momentData: Moment | null = null;
 
@@ -18,9 +18,9 @@ export class MomentFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.momentForm = new UntypedFormGroup({ // Aqui o FormGroup é inicializado
-      id: new UntypedFormControl(''),
-      title: new UntypedFormControl('', [Validators.required]),
-      description: new UntypedFormControl('', [Validators.required]),
+      id: new UntypedFormControl(this.momentData ? this.momentData.id : ''),
+      title: new UntypedFormControl(this.momentData ? this.momentData.title : '', [Validators.required]),
+      description: new UntypedFormControl(this.momentData ? this.momentData.description : '', [Validators.required]),
       image: new UntypedFormControl('')
     });
   }
